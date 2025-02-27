@@ -95,6 +95,10 @@ export default class Base {
    *  editable state. Clicking on empty space sets it to a static state.
    */
   onClick() {
+     // 销毁旧处理器
+    if (this.eventHandler) {
+      this.eventHandler.destroy();
+    }
     this.eventHandler = new this.cesium.ScreenSpaceEventHandler(this.viewer.canvas);
     this.eventHandler.setInputAction((evt: any) => {
       const pickedObject = this.viewer.scene.pick(evt.position);
